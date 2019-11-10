@@ -50,14 +50,14 @@ async function run() {
 
     available.push(...good);
     processed.push(...chunk);
-    await fs.appendFile('output-' + start + '.txt', available.join('\n') + offset);
+    await fs.appendFile(`output-${start}.txt`, available.join('\n') + offset);
 
     const [bar, percentage] = progressBar(processed.length, total, 50);
 
-    process.stdout.write('[' + bar + '] (' + percentage + '%)\r');
+    process.stdout.write(`[${bar}] (${percentage}%)\r`);
   }
 
-  process.stdout.write('='.repeat(25) + ' '.repeat(50) + '\n\n  Names checked: ' + total + '\n  Time taken: ' + ms(Date.now() - start, { long: true }) + '\n  Available: ' + available.length + ' (' + (available.length * 100 / total).toFixed(2) + '%)\n\n' + '='.repeat(25));
+  process.stdout.write(`${'='.repeat(25)}${' '.repeat(50)}\n\n  Names checked: ${total}\n  Time taken: ${ms(Date.now() - start, { long: true })}\n  Available: ${available.length} (${(available.length * 100 / total).toFixed(2)}%)\n\n${'='.repeat(25)}`);
 }
 
 run();
